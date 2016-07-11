@@ -33,7 +33,7 @@ gravatar:
 # information on garbage collection on the registry, read the documentation:
 # https://github.com/docker/distribution/blob/master/docs/garbage-collection.md
 delete:
-  enabled: false
+  enabled: true
 
 # LDAP support. If enabled, then only users of the specified LDAP server will
 # be able to use Portus.
