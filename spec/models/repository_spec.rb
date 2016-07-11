@@ -75,6 +75,10 @@ describe Repository do
     let(:registry) { create(:registry, hostname: "registry.test.lan") }
     let(:user) { create(:user) }
 
+    before :each do
+      VCR.turn_on!
+    end
+
     context "adding an existing repo/tag" do
       it "does not add a new activity when an already existing repo/tag already existed" do
         event = { "actor" => { "name" => user.username } }
@@ -88,6 +92,16 @@ describe Repository do
         expect do
           Repository.add_repo(event, registry.global_namespace, repository_name, tag_name)
         end.to change(PublicActivity::Activity, :count).by(0)
+      end
+
+      it "updates the digest of an already existing tag" do
+        event = { "actor" => { "name" => user.username }, "target" => { "digest" => "foo" } }
+        Repository.add_repo(event, registry.global_namespace, repository_name, tag_name)
+        expect(Repository.find_by(name: repository_name).tags.first.digest).to eq("foo")
+
+        event["target"]["digest"] = "bar"
+        Repository.add_repo(event, registry.global_namespace, repository_name, tag_name)
+        expect(Repository.find_by(name: repository_name).tags.first.digest).to eq("bar")
       end
     end
 

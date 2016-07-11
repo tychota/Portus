@@ -93,7 +93,7 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     columnize (0.9.0)
-    crack (0.4.2)
+    crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crono (0.9.0)
       activerecord (~> 4.0)
@@ -113,6 +113,8 @@ GEM
       excon (>= 0.38.0)
       json
     erubis (2.7.0)
+    ethon (0.9.0)
+      ffi (>= 1.3.0)
     excon (0.49.0)
     execjs (2.2.2)
     factory_girl (4.5.0)
@@ -355,6 +357,8 @@ GEM
       polyglot (~> 0.3)
     turbolinks (2.5.3)
       coffee-rails
+    typhoeus (1.0.2)
+      ethon (>= 0.9.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.2)
@@ -403,6 +407,7 @@ DEPENDENCIES
   database_cleaner
   devise
   docker-api (~> 1.28.0)
+  ethon (~> 0.9.0)
   factory_girl_rails
   ffaker
   font-awesome-rails
@@ -441,6 +446,7 @@ DEPENDENCIES
   thor
   timecop
   turbolinks
+  typhoeus (~> 1.0.2)
   uglifier
   vcr
   web-console (~> 2.1.3)
